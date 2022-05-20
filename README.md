@@ -1,26 +1,40 @@
 # SPARQL Burger
+
 SPARQL Burger is a **Python SPARQL query builder** that automates the generation of SPARQL graph patterns, SPARQL Select and SPARQL Update queries. Just like stacking onions, tomatos and cheese to assemble the right burger, SPARQL Burger offers the necessary ingredients for the assembly of meaningful SPARQL queries in an OOP manner.
 
-[![Downloads](http://pepy.tech/badge/SPARQL-Burger)](http://pepy.tech/project/SPARQL-Burger)
+_This [repository](https://github.com/vijayskumar/SPARQL-Burger) is a "Derivative Work" that is based on an original [repository](https://github.com/panmitz/SPARQL-Burger), wherein a number of modifications have been made by us (GE Research) to the files in "Source" form, as per definitions in the W3C SOFTWARE NOTICE AND LICENSE listed [here](https://github.com/panmitz/SPARQL-Burger/blob/master/LICENSE.txt). These modifications were carried out as a part of work supported by the Office of the Director of National Intelligence (ODNI), Intelligence Advanced Research Projects Activity (IARPA), via Contract # 2021-21022600004 (Proposal # GER Proposal #20-378 (258732))._
+
+The following files from the original repository have been modified within this redistributed version:
+
+ - [README.md](README.md)
+ - [SPARQLBurger/SPARQLQueryBuilder.py](SPARQLBurger/SPARQLQueryBuilder.py)
+ - [SPARQLBurger/SPARQLSyntaxTerms.py](SPARQLBurger/SPARQLSyntaxTerms.py)
+
+The date of modification of the above files was May 20th, 2022.
+Where applicable, the specifics of the modifications have been described or highlighted using comments within the respective files.
+
+The following new files have been added as part of this redistributed version:
+ 
+ - [setup.py](setup.py) - code to package and install SPARQLBurger as a module within some Python environment
+ - [requirements.txt](requirements.txt) - requirements file for pip install of SPARQLBurger as a packaged module
 
 ## Getting Started
-SPARQL Burger is a minimal module for Python (2.x. and 3.x).
+SPARQL Burger is a minimal module for Python (2.x and 3.x).
 
 ### Prerequisites
 
-None
+- Python (2.x or 3.x)
 
 ### Installation
 
 * #### Manually
  
- 1. Save the `SPARQLBurger` folder to your project's directory.
-
-* #### From PyPi
-
- ```
- pip install SPARQL-Burger
- ```
+ 1. First, install the dependency packages within your Python environment: ```pip install -r requirements.txt```
+ 2. Create and install SPARQLBurger wheel file:
+```
+python setup.py sdist bdist_wheel                                 # create wheel file
+pip install <MY_PATH>/dist/SPARQLBurger-0.0.1-py3-none-any.whl    # install wheel file
+```
 
 ## Usage examples
 ### 1. Create a SPARQL graph pattern and add some triples
@@ -392,3 +406,9 @@ WHERE {
 SPARQL Burger has been deployed in the following projects:
 
 * [CASPAR Framework](https://www.linkedin.com/showcase/caspar-framework)
+ 
+## Notes
+
+**README.md** edited by GE Research 05/20/2022, Copyright 2022 © General Electric Company, All Rights Reserved.
+
+_The contents of this README file represent a modified version of the original file: [README.md](https://github.com/panmitz/SPARQL-Burger/README.md). This research is based upon work supported in part by the Office of the Director of National Intelligence (ODNI), Intelligence Advanced Research Projects Activity (IARPA), via Contract # 2021-21022600004 (GER Proposal #20-378 (258732)). The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily representing the official policies, either expressed or implied, of ODNI, IARPA, or the U.S. Government. The U.S. Government is authorized to reproduce and distribute reprints for governmental purposes notwithstanding any copyright annotation therein._
