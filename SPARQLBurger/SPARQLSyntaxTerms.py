@@ -74,6 +74,26 @@ class Filter:
             return ""
 
 
+class Having:
+    def __init__(self, expression):
+        """
+        The Having class constructor.
+        :param expression: <str> The expression to get in the having filter (e.g. "?age > 30")
+        """
+        self.expression = expression
+
+    def get_text(self):
+        """
+        Generates the text for the given having filter.
+        :return: <str> The filter definition text. Returns empty string if an exception was raised.
+        """
+        try:
+            return "HAVING (%s)" % (self.expression,)
+        except Exception as e:
+            print("Error 1 @ Filter.get_text()")
+            return ""
+
+
 class Binding:
     def __init__(self, value, variable):
         """
@@ -106,7 +126,7 @@ class Binding:
 class Bound:
     def __init__(self, variable):
         """
-        The Bound class constructor.
+        The Binding class constructor.
         :param variable: <str> The variable to be checked if it is bound (e.g. "?name")
          OR <obj> Another object to be nested.
         """
@@ -133,7 +153,7 @@ class Bound:
 class IfClause:
     def __init__(self, condition, true_value, false_value):
         """
-        The IfClause class constructor.
+        The Binding class constructor.
         :param condition: <str> The condition for the IF clause OR <obj> Another object to be nested.
         :param true_value: <str> The value for when IF condition is True OR <obj> Another object to be nested.
         :param false_value: <str> The value for when IF condition is False OR <obj> Another object to be nested.
@@ -193,4 +213,24 @@ class GroupBy:
             print("Error 1 @ GroupBy.get_text()")
             return ""
 
+
+class OrderBy:
+    def __init__(self, variables):
+        """
+        The OrderBy class constructor.
+        :param variables: <list> A list of variables with ordering function (ASC/DESC) as strings that will be used for the ordering
+        """
+        self.variables = variables
+
+    def get_text(self):
+        """
+        Generates the text for the given ORDER BY expression (e.g. "ORDER BY ASC(?age)")
+        :return: <str> The ORDER BY definition text. Returns empty string if an exception was raised.
+        """
+        try:
+            return "ORDER BY %s\n" % (" ".join(self.variables), )
+
+        except Exception as e:
+            print("Error 1 @ OrderBy.get_text()")
+            return ""
 

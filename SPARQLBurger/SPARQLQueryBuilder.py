@@ -24,6 +24,7 @@ class SPARQLGraphPattern:
         self.graph = []
         self.filters = []
         self.bindings = []
+        self.havings = []
 
     def add_triples(self, triples):
         """
@@ -69,6 +70,18 @@ class SPARQLGraphPattern:
         """
         if type(filter) is Filter:
             self.filters.append(filter)
+            return True
+        else:
+            return False
+
+    def add_having(self, having):
+        """
+        Adds a HAVING expression to the graph pattern.
+        :param filter: <obj> The HAVING expression to be added.
+        :return: <bool> True if addition succeeded, False if given argument was not a Having object.
+        """
+        if type(having) is Having:
+            self.havings.append(having)
             return True
         else:
             return False
@@ -166,7 +179,7 @@ class SPARQLQuery:
 
     def add_prefix(self, prefix):
         """
-        Adds a PREFIX expression to the query.
+        Adds a PREFIX expression to the graph pattern.
         :param prefix: <obj> The Prefix object to be added.
         :return: <bool> True if addition succeeded, False if given argument was not a Prefix object.
         """
@@ -220,6 +233,8 @@ class SPARQLSelectQuery(SPARQLQuery):
         self.limit = limit
         self.variables = []
         self.group_by = []
+        self.having = []
+        self.order_by = []
 
     def add_variables(self, variables):
         """
@@ -244,6 +259,22 @@ class SPARQLSelectQuery(SPARQLQuery):
             return True
         else:
             return False
+
+    def add_order_by(self, order):
+        """
+        Adds a ORDER BY expression to the query
+        :param group: <obj> The OrderBy object to be added
+        :return: <bool> True if addition succeeded, False if given argument was not a OrderBy object.
+        """
+        if type(order) is OrderBy:
+            self.order_by.append(order)
+            return True
+        else:
+            return False
+
+    def add_having(self, having):
+        self.having.append(having)
+        return True
 
     def get_text(self, indentation_depth=0):
         """
@@ -287,6 +318,14 @@ class SPARQLSelectQuery(SPARQLQuery):
             # Add group by expressions
             for group in self.group_by:
                 query_text += "\n%s%s" % (outer_indentation, group.get_text())
+
+            # Add having expressions
+            for have in self.having:
+                query_text += "\n%s%s" % (outer_indentation, have.get_text())
+
+            # Add order by expressions
+            for order in self.order_by:
+                query_text += "\n%s%s" % (outer_indentation, order.get_text())
 
             # Add limit if required
             if self.limit:
