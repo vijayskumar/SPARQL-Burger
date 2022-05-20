@@ -7,6 +7,17 @@ Created by Panos Mitzias (http://www.pmitzias.com)
 Powered by Catalink Ltd (http://catalink.eu)
 """
 
+"""
+#   SPARQLSyntaxTerms.py edited by GE Research 05/20/2022, Copyright 2022 © General Electric Company, All Rights Reserved.
+
+#   The contents of this file represent a modified version of the original file: https://github.com/panmitz/SPARQL-Burger/blob/master/SPARQLBurger/SPARQLQueryBuilder.py.
+#   This research is based upon work supported in part by the Office of the Director of National Intelligence (ODNI),
+#   Intelligence Advanced Research Projects Activity (IARPA), via Contract # 2021-21022600004 (GER Proposal #20-378 (258732)).
+#   The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily
+#   representing the official policies, either expressed or implied, of ODNI, IARPA, or the U.S. Government.
+#   The U.S. Government is authorized to reproduce and distribute reprints for governmental purposes notwithstanding any
+#   copyright annotation therein.
+"""
 
 from SPARQLBurger.SPARQLSyntaxTerms import *
 
@@ -24,6 +35,7 @@ class SPARQLGraphPattern:
         self.graph = []
         self.filters = []
         self.bindings = []
+        # MODIFICATION: The following member variable 'self.havings' was added by GE Research as part of the ProCure project
         self.havings = []
 
     def add_triples(self, triples):
@@ -74,6 +86,7 @@ class SPARQLGraphPattern:
         else:
             return False
 
+    # MODIFICATION: The following method 'add_having' was added by GE Research as part of the ProCure project
     def add_having(self, having):
         """
         Adds a HAVING expression to the graph pattern.
@@ -260,6 +273,7 @@ class SPARQLSelectQuery(SPARQLQuery):
         else:
             return False
 
+    # MODIFICATION: The following method 'add_order_by' was added by GE Research as part of the ProCure project
     def add_order_by(self, order):
         """
         Adds a ORDER BY expression to the query
@@ -272,6 +286,7 @@ class SPARQLSelectQuery(SPARQLQuery):
         else:
             return False
 
+    # MODIFICATION: The following method 'add_having' was added by GE Research as part of the ProCure project
     def add_having(self, having):
         self.having.append(having)
         return True
@@ -319,10 +334,12 @@ class SPARQLSelectQuery(SPARQLQuery):
             for group in self.group_by:
                 query_text += "\n%s%s" % (outer_indentation, group.get_text())
 
+            # MODIFICATION: The following for loop statement block was added by GE Research as part of the ProCure project
             # Add having expressions
             for have in self.having:
                 query_text += "\n%s%s" % (outer_indentation, have.get_text())
 
+            # MODIFICATION: The following for loop statement block was added by GE Research as part of the ProCure project
             # Add order by expressions
             for order in self.order_by:
                 query_text += "\n%s%s" % (outer_indentation, order.get_text())

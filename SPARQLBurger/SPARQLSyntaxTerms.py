@@ -7,6 +7,17 @@ Created by Panos Mitzias (http://www.pmitzias.com)
 Powered by Catalink Ltd (http://catalink.eu)
 """
 
+"""
+#   SPARQLSyntaxTerms.py edited by GE Research 05/20/2022, Copyright 2022 © General Electric Company, All Rights Reserved.
+
+#   The contents of this file represent a modified version of the original file: https://github.com/panmitz/SPARQL-Burger/blob/master/SPARQLBurger/SPARQLSyntaxTerms.py.
+#   This research is based upon work supported in part by the Office of the Director of National Intelligence (ODNI), 
+#   Intelligence Advanced Research Projects Activity (IARPA), via Contract # 2021-21022600004 (GER Proposal #20-378 (258732)). 
+#   The views and conclusions contained herein are those of the authors and should not be interpreted as necessarily 
+#   representing the official policies, either expressed or implied, of ODNI, IARPA, or the U.S. Government. 
+#   The U.S. Government is authorized to reproduce and distribute reprints for governmental purposes notwithstanding any 
+#   copyright annotation therein.
+"""
 
 class Prefix:
     def __init__(self, prefix, namespace):
@@ -73,7 +84,7 @@ class Filter:
             print("Error 1 @ Filter.get_text()")
             return ""
 
-
+# MODIFICATION: The following class 'Having' with constructor and methods was added by GE Research for use in the ProCure project
 class Having:
     def __init__(self, expression):
         """
@@ -214,6 +225,7 @@ class GroupBy:
             return ""
 
 
+# MODIFICATION: The following class 'OrderBy' with constructor and methods was added by GE Research for use in the ProCure project
 class OrderBy:
     def __init__(self, variables):
         """
