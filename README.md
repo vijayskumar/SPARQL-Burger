@@ -17,6 +17,7 @@ The following new files have been added as part of this redistributed version:
  
  - [setup.py](setup.py) - code to package and install SPARQLBurger as a module within some Python environment
  - [requirements.txt](requirements.txt) - requirements file for pip install of SPARQLBurger as a packaged module
+ - [SPARQLBurger/__init__.py](SPARQLBurger/__init__.py) - empty init file for package installation purposes
 
 ## Getting Started
 SPARQL Burger is a minimal module for Python (2.x and 3.x).
